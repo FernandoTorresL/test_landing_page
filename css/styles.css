@@ -3,26 +3,48 @@ body {
     font-family: 'Arial';
 }
 
-.badge img {
-    width: 20%;
-}
-
 .hero {
     background: darkslategray;
     color: white;
     padding: 32px 15px;
+    display: grid;
+    grid-template-columns: minmax(auto, 1024px);
+    justify-content: center;
+}
+
+.hero-container {
+    display: grid;
+    grid-template-columns: 70px 1fr 360px;
+    grid-template-areas:    "badge title form"
+                            ". description form"
+                            ". countdown form";
+    grid-gap: 10px;
+}
+
+.badge {
+    grid-area: badge;
+}
+
+.badge img {
+    max-width: 90px;
 }
 
 .title {
-    color:#1c96d8;
+    grid-area: title;
+    color:white;
     font-size: 36px;
-    font-weight: normal;
+    font-weight: bold;
     margin: 0;
     display: flex;
     align-items: center;
 }
 
+.description {
+    grid-area: description;
+}
+
 .form {
+    grid-area: form;
     text-align: center;
     background: rgba(255, 255, 255, .9);
     padding: 1.5em;
@@ -57,6 +79,10 @@ body {
     display: inline-block;
 }
 
+.countdown {
+    grid-area: countdown;
+}
+
 .countdown p {
     font-size: 22px;
     font-weight: 300;
@@ -79,4 +105,15 @@ body {
 
 p {
     margin: 0;
+}
+
+@media screen and (max-width: 768px) {
+    .hero-container {
+        display: grid;
+        grid-template-columns: 70px 1fr;
+        grid-template-areas:    "badge title"
+                                "description description"
+                                "form form"
+                                "countdown countdown";
+    }
 }
